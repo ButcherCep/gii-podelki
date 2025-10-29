@@ -7,19 +7,28 @@ import java.util.stream.Collectors;
 
 import static ru.sbp.gazii.podelki.streams.tasks.clientOrders.Utils.*;
 
-
-public class Solution {
+public class SolutionOrders {
     public static void main(String[] args) {
 
         Data orders = new Data();
         List<Order> orderList = orders.getClientOrderData();
-        /// Задача: Напиши обработку потока заказов, где нужно:
-        /// Сгруппировать заказы по клиентам
-        /// Для каждого клиента найти 3 самых дорогих заказа
-        /// Посчитать общую сумму этих заказов для каждого клиента
-        /// Отфильтровать только клиентов с общей суммой > 10000
-        /// Вернуть Map<Client, List<Order>>
-        Map<Client, List<Order>> result = orderList.stream()
+        SolutionMethods methods = new SolutionMethods();
+        methods.processTask1(orderList);
+        methods.processTask2(orderList);
+        methods.processTask3(orderList);
+    }
+}
+
+class SolutionMethods {
+    /// Задача: Напиши обработку потока заказов, где нужно:
+    /// Сгруппировать заказы по клиентам
+    /// Для каждого клиента найти 3 самых дорогих заказа
+    /// Посчитать общую сумму этих заказов для каждого клиента
+    /// Отфильтровать только клиентов с общей суммой > 10000
+    /// Вернуть Map<Client, List<Order>>
+    Map<Client, List<Order>> processTask1(List<Order> orderList) {
+
+        return orderList.stream()
                 .collect(Collectors.groupingBy(Order::getClient))              // 1. Группируем по клиентам
                 .entrySet().stream()                                           // 2. Работаем с Entry<Client, List<Order>>
                 .filter(entry -> {
@@ -37,11 +46,14 @@ public class Solution {
                                 .limit(3)
                                 .collect(Collectors.toList())
                 ));
-        /// Задача: Найти клиентов с наибольшей покупательской активностью:
-        /// Клиентов, которые делали заказы в 3+ разных месяца
-        /// Средний чек которых выше среднего чека по всем клиентам
-        /// И которые покупали товары из минимум 2 разных категорий
-        /// Вернуть: Map<Client, PurchaseStats>
+    }
+
+    /// Задача: Найти клиентов с наибольшей покупательской активностью:
+    /// Клиентов, которые делали заказы в 3+ разных месяца
+    /// Средний чек которых выше среднего чека по всем клиентам
+    /// И которые покупали товары из минимум 2 разных категорий
+    /// Вернуть: Map<Client, PurchaseStats>
+    Map<Client, PurchaseStats> processTask2(List<Order> orderList) {
         Map<Client, PurchaseStats> result2 = orderList.stream()
                 .collect(Collectors.groupingBy(Order::getClient))
                 .entrySet().stream()
@@ -67,11 +79,11 @@ public class Solution {
                             BigDecimal.valueOf(clientOrders.size()), 2, RoundingMode.HALF_UP);
 
                     // Расчет общего среднего чека
-                    BigDecimal overallTotal = orders.getClientOrderData().stream()
+                    BigDecimal overallTotal = orderList.stream()
                             .map(Order::getTotalAmount)
                             .reduce(BigDecimal.ZERO, BigDecimal::add);
                     BigDecimal overallAverage = overallTotal.divide(
-                            BigDecimal.valueOf(orders.getClientOrderData().size()), 2, RoundingMode.HALF_UP);
+                            BigDecimal.valueOf(orderList.size()), 2, RoundingMode.HALF_UP);
 
                     return clientAverage.compareTo(overallAverage) > 0;
                 })
@@ -79,14 +91,17 @@ public class Solution {
                         Map.Entry::getKey,
                         entry -> createPurchaseStats(entry.getValue())
                 ));
+        return result2;
+    }
 
 
-        /// Задача 3: Выявление воронки продаж
-        /// Задача: Построить анализ последовательности покупок:
-        /// Для каждого клиента найти самый частый паттерн категорий товаров
-        /// (например: ELECTRONICS → CLOTHING → BOOKS)
-        /// Выявить клиентов, которые начали с дешёвых покупок (< 1000) и перешли к дорогим (> 5000)
-        /// Найти "потерянных" клиентов - тех, кто не делал заказов в последние 3 месяца
+    /// Задача 3: Выявление воронки продаж
+    /// Задача: Построить анализ последовательности покупок:
+    /// Для каждого клиента найти самый частый паттерн категорий товаров
+    /// (например: ELECTRONICS → CLOTHING → BOOKS)
+    /// Выявить клиентов, которые начали с дешёвых покупок (< 1000) и перешли к дорогим (> 5000)
+    /// Найти "потерянных" клиентов - тех, кто не делал заказов в последние 3 месяца
+    List<ClientFunnel> processTask3(List<Order> orderList) {
         List<ClientFunnel> result3 = orderList.stream()
                 .collect(Collectors.groupingBy(Order::getClient))
                 .entrySet().stream()
@@ -97,11 +112,15 @@ public class Solution {
                         isLostClient(entry),
                         lastDate(entry))
                 ).toList();
-        /// Задача 4: Кросс-сеLLный анализ
-        /// Задача: Найти корреляции между товарами:
-        /// Пары товаров, которые часто покупают вместе (в одном заказе)
-        /// Товары-"хабы" - те, которые покупают с разными другими товарами
-        /// Рекомендации "клиенты, которые покупали X, также покупали Y"
+        return result3;
+    }
+
+    /// Задача 4: Кросс-сеLLный анализ
+    /// Задача: Найти корреляции между товарами:
+    /// Пары товаров, которые часто покупают вместе (в одном заказе)
+    /// Товары-"хабы" - те, которые покупают с разными другими товарами
+    /// Рекомендации "клиенты, которые покупали X, также покупали Y"
+    List<ProductAnalysis> processTask4(List<Order> orderList) {
         List<ProductAnalysis> result4 = orderList.stream()
                 .collect(Collectors.groupingBy(Order::getClient))
                 .entrySet().stream()
@@ -110,6 +129,7 @@ public class Solution {
                         hubProducts(orderList),
                         recommendations(orderList))
                 ).toList();
+        return result4;
     }
 
     // найти общее товары

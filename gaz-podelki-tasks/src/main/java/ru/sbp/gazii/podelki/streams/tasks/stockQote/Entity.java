@@ -1,6 +1,6 @@
 package ru.sbp.gazii.podelki.streams.tasks.stockQote;
 
-import lombok.AllArgsConstructor;
+import lombok.*;
 import lombok.Data;
 
 import java.math.BigDecimal;
@@ -8,6 +8,9 @@ import java.time.LocalDateTime;
 import java.util.List;
 @Data
 @AllArgsConstructor
+@Builder
+@RequiredArgsConstructor
+@EqualsAndHashCode
 // Основная сущность котировки
 class StockQuote {
     private String symbol;          // тикер акции (AAPL, GOOGL, etc)
@@ -17,6 +20,9 @@ class StockQuote {
 }
 @Data
 @AllArgsConstructor
+@Builder
+@RequiredArgsConstructor
+@EqualsAndHashCode
 // DTO для временных интервалов
 class TimeWindow {
     private LocalDateTime startTime;
@@ -25,6 +31,9 @@ class TimeWindow {
 }
 @Data
 @AllArgsConstructor
+@Builder
+@RequiredArgsConstructor
+@EqualsAndHashCode
 // DTO для волатильности
 class VolatilityResult {
     private TimeWindow window;
@@ -37,6 +46,9 @@ class VolatilityResult {
 }
 @Data
 @AllArgsConstructor
+@Builder
+@RequiredArgsConstructor
+@EqualsAndHashCode
 // DTO для падения цены
 class PriceDropPeriod {
     private List<StockQuote> consecutiveDrops; // 3 подряд падающие котировки
@@ -47,6 +59,9 @@ class PriceDropPeriod {
 }
 @Data
 @AllArgsConstructor
+@Builder
+@RequiredArgsConstructor
+@EqualsAndHashCode
 // DTO для автокорреляции
 class AutocorrelationResult {
     private LocalDateTime timestamp;
@@ -56,6 +71,9 @@ class AutocorrelationResult {
 }
 @Data
 @AllArgsConstructor
+@Builder
+@RequiredArgsConstructor
+@EqualsAndHashCode
 class StockAnalysisResult {
     private List<VolatilityResult> topVolatilityWindows;
     private List<PriceDropPeriod> consecutiveDropPeriods;

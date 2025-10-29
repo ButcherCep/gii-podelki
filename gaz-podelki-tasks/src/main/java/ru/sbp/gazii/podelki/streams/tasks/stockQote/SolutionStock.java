@@ -1,9 +1,10 @@
 package ru.sbp.gazii.podelki.streams.tasks.stockQote;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
-public class Solution {
+public class SolutionStock {
 
     public static void main(String[] args) {
         List<StockQuote> data = new Data().quotes;
@@ -16,7 +17,7 @@ public class Solution {
     // Отсортировано по volatility DESC
     static List<VolatilityResult> findMaxVolatilityWindows(List<StockQuote> quotes, int topN) {
         List<VolatilityResult> results = new ArrayList<>();
-
+//        quotes.stream().sorted(Comparator.comparing(StockQuote::getTimestamp))
         return results;
     }
 

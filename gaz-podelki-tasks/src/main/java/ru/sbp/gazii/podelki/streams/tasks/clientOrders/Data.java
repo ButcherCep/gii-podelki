@@ -1,11 +1,13 @@
 package ru.sbp.gazii.podelki.streams.tasks.clientOrders;
 
+import lombok.Getter;
+
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
-
+@Getter
 public class Data {
 
     Client client1 = new Client(1L, "Иван Петров", "ivan@mail.com",
@@ -16,6 +18,7 @@ public class Data {
 
     Client client3 = new Client(3L, "Алексей Козлов", "alex@mail.com",
             LocalDate.of(2021, 11, 5), ClientCategory.PREMIUM);
+
     Product product1 = new Product(101L, "iPhone 15", ProductCategory.ELECTRONICS, new BigDecimal("999.99"));
     Product product2 = new Product(102L, "MacBook Pro", ProductCategory.ELECTRONICS, new BigDecimal("2499.99"));
     Product product3 = new Product(201L, "Футболка", ProductCategory.CLOTHING, new BigDecimal("29.99"));

@@ -1,7 +1,7 @@
 package ru.sbp.gazii.podelki.streams.tasks.clientOrders;
 
 import jakarta.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
+import lombok.*;
 import lombok.Data;
 
 import java.math.BigDecimal;
@@ -13,7 +13,10 @@ import java.util.Map;
 import java.util.Set;
 
 @Data
+@Builder
 @AllArgsConstructor
+@RequiredArgsConstructor
+@EqualsAndHashCode
 class Client {
     private Long id;
     private String name;
@@ -24,6 +27,9 @@ class Client {
 
 @Data
 @AllArgsConstructor
+@Builder
+@RequiredArgsConstructor
+@EqualsAndHashCode
 class Order implements Comparable<Order> {
     private Long id;
     private Client client;
@@ -31,6 +37,7 @@ class Order implements Comparable<Order> {
     private OrderStatus status; // PENDING, PROCESSING, COMPLETED, CANCELLED
     private List<OrderItem> items;
     private BigDecimal totalAmount;
+
     @Override
     public int compareTo(@NotNull Order order) {
         return this.orderDate.compareTo(order.orderDate);
