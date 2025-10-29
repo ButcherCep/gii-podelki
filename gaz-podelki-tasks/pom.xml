@@ -38,6 +38,7 @@
             <version>3.2.0</version>
         </dependency>
 
+
         <!-- Spring Boot Test -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -52,6 +53,13 @@
             <artifactId>junit-jupiter</artifactId>
             <version>${junit.version}</version>
             <scope>test</scope>
+        </dependency>
+
+        <!-- Графики -->
+        <dependency>
+            <groupId>com.mitchtalmadge</groupId>
+            <artifactId>asciigraph</artifactId>
+            <version>1.0.3</version>
         </dependency>
     </dependencies>
 

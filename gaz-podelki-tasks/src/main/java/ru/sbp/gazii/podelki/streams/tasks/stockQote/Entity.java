@@ -14,9 +14,15 @@ import java.util.List;
 // Основная сущность котировки
 class StockQuote {
     private String symbol;          // тикер акции (AAPL, GOOGL, etc)
-    private LocalDateTime timestamp;
-    private BigDecimal price;
+    private LocalDateTime timestamp; //время тикета
+    private BigDecimal price;   //стоимость
     private BigDecimal volume;    // объем торгов
+
+    @Override
+    public String toString() {
+        return "\nStockQuote: " +symbol +": "+"$=" + price +
+                "    volume=" + volume;
+    }
 }
 @Data
 @AllArgsConstructor
@@ -25,9 +31,17 @@ class StockQuote {
 @EqualsAndHashCode
 // DTO для временных интервалов
 class TimeWindow {
+    @Override
+    public String toString() {
+        return  "TimeWindow:   \n" +
+                "           startTime=" + startTime +"\n"+
+                "           endTime=" + endTime +"\n"+
+                "           quotes=" + quotes;
+    }
+
     private LocalDateTime startTime;
     private LocalDateTime endTime;
-    private List<StockQuote> quotes;
+    private List<StockQuote> quotes;  //пара котировок
 }
 @Data
 @AllArgsConstructor
@@ -41,6 +55,20 @@ class VolatilityResult {
     private BigDecimal minPrice;
     private BigDecimal maxPrice;
     private BigDecimal priceRange;  // max - min
+
+    @Override
+    public String toString() {
+//        String graph = ASCIIGraph
+        return  "\n______________________________________________________________________________________________________________________________________" +
+                "\n  VolatilityResult:   \n" +
+                "window=" + window +"\n"+
+                "            volatility=" + volatility +"\n"+
+                "\n______________________________________________________________________________________________________________________________________\n"+
+                "            minPrice=" + minPrice +"\n"+
+                "            maxPrice=" + maxPrice +"\n"+
+                "            priceRange=" + priceRange +
+                "\n______________________________________________________________________________________________________________________________________\n";
+    }
 
 // constructors, getters
 }
