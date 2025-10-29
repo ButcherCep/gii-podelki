@@ -2,9 +2,10 @@ package ru.sbp.gazii.podelki.threads.synchonize.tasks;
 
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
+
 /**
- *Пример реализации паттерна Producer-Consumer с использованием BlockingQueue.
- * */
+ * Пример реализации паттерна Producer-Consumer с использованием BlockingQueue.
+ */
 public class Zadacha_3 {
     public static void main(String[] args) {
         // Создаем BlockingQueue с ограниченной емкостью

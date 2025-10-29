@@ -3,7 +3,7 @@ package ru.sbp.gazii.podelki.threads.synchonize.tasks;
 
 import org.graalvm.collections.Pair;
 
-import java.util.*;
+import java.util.Random;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 
@@ -42,7 +42,7 @@ public class Zadacha_10 {
                         builder.append(res2.getRight());
                         return builder;
                     });
-            System.out.println("Итерация: "+i);
+            System.out.println("Итерация: " + i);
             future1.thenAccept(System.out::println).get();
         }
     }

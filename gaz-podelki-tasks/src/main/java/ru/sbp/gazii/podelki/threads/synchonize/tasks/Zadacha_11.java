@@ -1,7 +1,6 @@
 package ru.sbp.gazii.podelki.threads.synchonize.tasks;
 
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ExecutionException;
 
 /**
  * Обработка исключений comletableFuture

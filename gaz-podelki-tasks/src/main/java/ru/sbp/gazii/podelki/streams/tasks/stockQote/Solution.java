@@ -31,7 +31,6 @@ public class Solution {
     }
 
 
-
     // Возвращает корреляцию между price(t) и price(t-1min) для каждого момента времени
     // Для точек, где нет данных с лагом 1 мин - пропускаем
     static List<AutocorrelationResult> calculateAutocorrelation(List<StockQuote> quotes) {

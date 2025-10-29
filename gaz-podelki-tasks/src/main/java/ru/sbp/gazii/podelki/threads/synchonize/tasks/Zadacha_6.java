@@ -3,7 +3,7 @@ package ru.sbp.gazii.podelki.threads.synchonize.tasks;
 /**
  * Напишите программу,
  * которая использует synchronized для потокобезопасного увеличения счетчика
- * */
+ */
 public class Zadacha_6 {
     private static int counter = 0;
     private static final Object lock = new Object();

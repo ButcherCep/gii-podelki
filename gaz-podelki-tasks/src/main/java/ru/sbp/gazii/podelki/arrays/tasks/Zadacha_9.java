@@ -16,7 +16,7 @@ public class Zadacha_9 {
         for (int i = 0; i < nums.length; i++) {
             int complement = target - nums[i]; //9-(2,7,11,15)
             if (map.containsKey(complement)) {
-                return new int[] {map.get(complement), i};
+                return new int[]{map.get(complement), i};
             }
             map.put(nums[i], i);
         }

@@ -52,18 +52,18 @@ class UserCache {
 
             // Если Future уже существует в кэше
             if (future != null) {
-                System.out.println("Пользователь "+id+"  уже в кэше ");
+                System.out.println("Пользователь " + id + "  уже в кэше ");
                 return future.get(); // Возвращаем результат (ждем завершения)
             }
 
             // Если Future отсутствует, создаем новую задачу
             FutureTask<User> futureTask = new FutureTask<>(() -> userService.loadUser(id));
-            System.out.println("Пользователь "+id+" отсутствует в кэше, создаем новую задачу ");
+            System.out.println("Пользователь " + id + " отсутствует в кэше, создаем новую задачу ");
             // Пытаемся добавить FutureTask в кэш
             future = cache.putIfAbsent(id, futureTask);
 
             if (future == null) {
-                System.out.println("Пользователь "+id+" добавлен в кэш " + id);
+                System.out.println("Пользователь " + id + " добавлен в кэш " + id);
                 // Если добавление успешно, запускаем задачу
                 futureTask.run();
                 future = futureTask;

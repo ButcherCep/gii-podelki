@@ -14,8 +14,8 @@ import java.util.stream.Collectors;
 
 public class CollectionUtils {
 
-    static  <T> T findMax(Collection<? extends T> collection,
-                          Comparator<? super T> comparator) {
+    static <T> T findMax(Collection<? extends T> collection,
+                         Comparator<? super T> comparator) {
         return collection.stream().max(comparator).orElse(null);
     }
 
@@ -24,8 +24,8 @@ public class CollectionUtils {
         return collection.stream().filter(predicate).collect(Collectors.toList());
     }
 
-    static <T,R> List<R> transform(Collection<? extends T> collection,
-                                   Function<? super T, ? extends R> function) {
+    static <T, R> List<R> transform(Collection<? extends T> collection,
+                                    Function<? super T, ? extends R> function) {
         return collection.stream().map(function).collect(Collectors.toList());
     }
 

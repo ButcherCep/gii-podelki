@@ -5,7 +5,7 @@ import java.util.concurrent.ConcurrentHashMap;
 /**
  * Напишите программу,
  * которая использует ConcurrentHashMap для потокобезопасного доступа к данным
- * */
+ */
 public class Zadacha_8 {
     public static void main(String[] args) {
         // Создаем ConcurrentHashMap

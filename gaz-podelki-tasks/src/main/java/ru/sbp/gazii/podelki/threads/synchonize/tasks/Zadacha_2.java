@@ -3,7 +3,7 @@ package ru.sbp.gazii.podelki.threads.synchonize.tasks;
 /**
  * Напишите пример кода, который приводит к deadlock.
  * Объясните, как его можно избежать. (Поменять местами LOCKs)
- * */
+ */
 public class Zadacha_2 {
     private static final Object LOCK1 = new Object();
     private static final Object LOCK2 = new Object();

@@ -7,6 +7,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Consumer;
 import java.util.function.Function;
 //TODO
+
 /**
  * Реализовать шину событий с типобезопасной подпиской
  */
@@ -16,7 +17,7 @@ public class EventBus {
 
     private static class HandlerGroup<T> {
         List<Consumer<T>> consumers = new ArrayList<>();
-        List<Function<T,?>> functions = new ArrayList<>();
+        List<Function<T, ?>> functions = new ArrayList<>();
     }
 
     <T> void subscribe(Class<T> eventType, Consumer<T> handler) {
@@ -48,7 +49,7 @@ public class EventBus {
     <T> void unsubscribe(Class<T> eventType, Consumer<T> handler) {
         HandlerGroup<T> handlerGroup = getHandlerGroup(eventType);
         List<Consumer<T>> eventHandler = handlerGroup.consumers;
-        if (eventHandler !=null) {
+        if (eventHandler != null) {
             eventHandler.remove(handler);
         } else {
             if (eventHandler.isEmpty()) {

@@ -9,23 +9,24 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 /**
  * public class Counter {
- *     private int count = 0;
- *
- *     public synchronized void increment() {
- *         count++;
- *     }
- *
- *     public synchronized int getCount() {
- *         return count;
- *     }
+ * private int count = 0;
+ * <p>
+ * public synchronized void increment() {
+ * count++;
+ * }
+ * <p>
+ * public synchronized int getCount() {
+ * return count;
+ * }
  * } Как можно оптимизировать ?
- * */
+ */
 public class Zadacha_7 {
 }
+
 /**
  * AtomicInteger предоставляет атомарные операции для работы с целыми числами,
  * что позволяет избежать блокировок.
- * */
+ */
 class Counter_1 {
     private final AtomicInteger count = new AtomicInteger(0);
 
@@ -37,9 +38,10 @@ class Counter_1 {
         return count.get(); // Получение текущего значения
     }
 }
+
 /**
  * ReentrantLock предоставляет более гибкую блокировку, чем synchronized.
- * */
+ */
 class Counter_2 {
     private int count = 0;
     private final Lock lock = new ReentrantLock();
@@ -62,10 +64,11 @@ class Counter_2 {
         }
     }
 }
+
 /**
  * Если чтение происходит чаще, чем запись, можно использовать ReadWriteLock,
  * чтобы разрешить множественное чтение, но блокировать запись.
- * */
+ */
 class Counter_3 {
     private int count = 0;
     private final ReadWriteLock rwLock = new ReentrantReadWriteLock();
@@ -88,11 +91,12 @@ class Counter_3 {
         }
     }
 }
+
 /**
- *LongAdder — это специализированный класс для высоконагруженных сценариев,
+ * LongAdder — это специализированный класс для высоконагруженных сценариев,
  * где множество потоков обновляют значение.
  * Он разделяет счетчик на несколько ячеек, чтобы уменьшить contention.
- * */
+ */
 class Counter_4 {
     private final LongAdder count = new LongAdder();
 

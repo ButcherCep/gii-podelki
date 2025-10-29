@@ -5,7 +5,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 /**
  * Напишите программу,
  * которая использует AtomicInteger для потокобезопасного увеличения счетчика
- * */
+ */
 public class Zadacha_5 {
     private static final AtomicInteger counter = new AtomicInteger(0); // Потокобезопасный счетчик
 

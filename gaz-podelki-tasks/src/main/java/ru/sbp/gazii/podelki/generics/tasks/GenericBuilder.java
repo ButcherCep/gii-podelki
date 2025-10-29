@@ -22,8 +22,8 @@ public class GenericBuilder<T> {
     }
 
     <F> GenericBuilder<T> with(Setter<T, F> setter, F value) {
-            setters.add(target -> setter.set(target, value));
-            return this;
+        setters.add(target -> setter.set(target, value));
+        return this;
     }
 
     T build() {
@@ -32,7 +32,7 @@ public class GenericBuilder<T> {
     }
 
     @FunctionalInterface
-    public interface Setter<T,F> {
+    public interface Setter<T, F> {
         void set(T target, F value);
     }
 }

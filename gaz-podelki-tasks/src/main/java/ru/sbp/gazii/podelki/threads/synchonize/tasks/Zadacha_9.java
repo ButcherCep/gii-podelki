@@ -5,7 +5,7 @@ import java.util.concurrent.CompletableFuture;
 /**
  * Напишите программу, которая использует CompletableFuture
  * для выполнения асинхронных задач и объединения их результатов.
- * */
+ */
 public class Zadacha_9 {
     public static void main(String[] args) {
         // Задача 1: Асинхронное получение числа

@@ -3,7 +3,7 @@ package ru.sbp.gazii.podelki.threads.synchonize.tasks;
 /**
  * Напишите программу, в которой один поток ждет,
  * пока другой поток не выполнит определенное условие, используя методы wait и notify
- * */
+ */
 public class Zadacha_4 {
     private static final Object lock = new Object();
     private static boolean condition = false;

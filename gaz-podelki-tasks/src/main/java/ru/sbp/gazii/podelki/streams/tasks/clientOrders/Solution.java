@@ -5,7 +5,7 @@ import java.math.RoundingMode;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import static streams.clientOrders.Utils.*;
+import static ru.sbp.gazii.podelki.streams.tasks.clientOrders.Utils.*;
 
 
 public class Solution {
@@ -139,7 +139,6 @@ public class Solution {
         // Дополнительно можно посчитать частоты и отфильтровать
         return result;
     }
-
 
 
     private static Set<Product> hubProducts(List<Order> orders) {
