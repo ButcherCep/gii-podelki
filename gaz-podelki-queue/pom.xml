@@ -4,14 +4,27 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>ru.sbp.gazii.podelki</groupId>
+    <parent>
+        <groupId>ru.sbp.gazii.podelki</groupId>
+        <artifactId>gaz-podelki-dependencies</artifactId>
+        <version>1.0.0</version>
+    </parent>
+
     <artifactId>gaz-podelki-queue</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0.0</version>
 
-    <properties>
-        <maven.compiler.source>21</maven.compiler.source>
-        <maven.compiler.target>21</maven.compiler.target>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
+    <dependencies>
+        <!-- Spring Boot Autoconfigure -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-autoconfigure</artifactId>
+            <!-- Версия управляется через BOM в родительском pom -->
+        </dependency>
 
+        <!-- Spring Context (обычно нужен для autoconfigure) -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+        </dependency>
+    </dependencies>
 </project>
