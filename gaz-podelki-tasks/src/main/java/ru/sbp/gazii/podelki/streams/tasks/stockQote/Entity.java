@@ -79,6 +79,16 @@ class VolatilityResult {
 @EqualsAndHashCode
 // DTO для падения цены
 class PriceDropPeriod {
+    @Override
+    public String toString() {
+        return "PriceDropPeriod   \n" +
+                "consecutiveDrops=" + consecutiveDrops +"\n"+
+                "\n______________________________________________________________________________________________________________________________________\n"+
+                "totalDropPercent=" + totalDropPercent +"\n"+
+                "startTime=" + startTime +"\n"+
+                "endTime=" + endTime;
+    }
+
     private List<StockQuote> consecutiveDrops; // 3 подряд падающие котировки
     private BigDecimal totalDropPercent;       // суммарное падение за период
     private LocalDateTime startTime;
@@ -92,6 +102,16 @@ class PriceDropPeriod {
 @EqualsAndHashCode
 // DTO для автокорреляции
 class AutocorrelationResult {
+    @Override
+    public String toString() {
+        return  "\n______________________________________________________________________________________________________________________________________\n"+
+                "AutocorrelationResult{" +
+                "timestamp=" + timestamp +"\n"+
+                "correlation=" + correlation +"\n"+
+                "price=" + price +"\n"+
+                "laggedPrice=" + laggedPrice;
+    }
+
     private LocalDateTime timestamp;
     private BigDecimal correlation;  // коэффициент корреляции
     private BigDecimal price;
@@ -101,6 +121,15 @@ class AutocorrelationResult {
 @AllArgsConstructor
 @Builder
 @RequiredArgsConstructor
+@EqualsAndHashCode
+class PriceCorrelation {
+    private BigDecimal correlation;  // скользящая корреляция для этого момента времени
+    private BigDecimal laggedPrice;  // цена с лагом 1 минута
+}
+@Data
+@AllArgsConstructor
+@Builder
+@RequiredArgsConstructor 
 @EqualsAndHashCode
 class StockAnalysisResult {
     private List<VolatilityResult> topVolatilityWindows;
