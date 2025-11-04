@@ -1,0 +1,24 @@
+version: '3.8'
+services:
+  postgres:
+    image: postgres:15
+    container_name: gaz-podelki-postgres
+    environment:
+      POSTGRES_DB: gaz_podelki_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./src/main/resources/schema.sql:/docker-entrypoint-initdb.d/schema.sql
+      - ./src/main/resources/data.sql:/docker-entrypoint-initdb.d/data.sql
+    networks:
+      - gaz-podelki-network
+
+volumes:
+  postgres_data:
+
+networks:
+  gaz-podelki-network:
+    driver: bridge

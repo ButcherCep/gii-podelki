@@ -12,7 +12,7 @@
     <modules>
         <module>gaz-podelki-tasks</module>
         <module>gaz-podelki-queue</module>
-        <module>gaz-podelki-db</module>
+        <module>gaz-podelki-db-product</module>
         <module>gaz-podelki-kafka</module>
         <module>gaz-podelki-vertex</module>
         <module>gaz-podelki-rpc</module>
@@ -31,10 +31,17 @@
         <postgresql.version>42.6.0</postgresql.version>
         <hibernate.version>6.3.1.Final</hibernate.version>
         <flyway.version>9.22.3</flyway.version>
+        <org.mapstruct.version>1.5.5.Final</org.mapstruct.version>
     </properties>
 
     <dependencyManagement>
         <dependencies>
+
+            <dependency>
+                <groupId>org.mapstruct</groupId>
+                <artifactId>mapstruct</artifactId>
+                <version>${org.mapstruct.version}</version>
+            </dependency>
             <!-- Spring Boot BOM - управляет версиями Spring зависимостей -->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
